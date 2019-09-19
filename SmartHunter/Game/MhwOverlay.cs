@@ -120,11 +120,11 @@ namespace SmartHunter.Game
 
 
         public void post(string body)
-        {
-
+        {            
+            String uri = Env.serverUrl+Env.serverPort+Env.serverRouteDamages;
             using (var httpClient = new HttpClient())
             {
-                using (var request = new HttpRequestMessage(new HttpMethod("POST"), "http://localhost:3000/discord/damages/"))
+                using (var request = new HttpRequestMessage(new HttpMethod("POST"), uri))
                 {
                     //request.Headers.TryAddWithoutValidation("Authorization", "6af7d2d213a3ba5e9bc64b80e02b000");
                     //request.Headers.TryAddWithoutValidation("OrgId", "671437200");
