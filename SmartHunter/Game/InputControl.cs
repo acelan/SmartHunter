@@ -3,6 +3,7 @@
     public enum InputControl
     {
         ManipulateWidget,
-        HideWidgets
+        HideWidgets,
+        SendDataToDiscord
     }
 }
