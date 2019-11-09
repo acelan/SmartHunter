@@ -77,7 +77,7 @@ namespace SmartHunter.Game.Data
         {
             get
             {
-                float size = 0; 
+                float size = 0;
 
                 MonsterConfig config = null;
                 if (ConfigHelper.MonsterData.Values.Monsters.TryGetValue(Id, out config))
@@ -121,6 +121,8 @@ namespace SmartHunter.Game.Data
         public Progress Health { get; private set; }
         public ObservableCollection<MonsterPart> Parts { get; private set; }
         public ObservableCollection<MonsterStatusEffect> StatusEffects { get; private set; }
+     
+        public bool CanBeCaptured => Health.Fraction < .3;
 
         public bool IsVisible
         {
@@ -136,7 +138,6 @@ namespace SmartHunter.Game.Data
             m_Id = id;
             Health = new Progress(maxHealth, currentHealth);
             m_SizeScale = sizeScale;
-
             Parts = new ObservableCollection<MonsterPart>();
             StatusEffects = new ObservableCollection<MonsterStatusEffect>();
         }

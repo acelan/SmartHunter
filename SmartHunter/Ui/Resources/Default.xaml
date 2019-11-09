@@ -28,10 +28,10 @@
     <converters:ColorTransformConverter x:Key="A_Converter_BackgroundColorTransform" SaturationAdjustment="-0.8" BrightnessAdjustment="0.66" OpacityOverride="0.3" />
     <converters:StringFormatConverter x:Key="A_Converter_StringFormat" />
     <converters:StringArrayContainsConverter x:Key="A_Converter_StringArrayContains" />
-    
+
     <Color x:Key="A_Color_Widget_Background">#00000000</Color>
     <system:Double x:Key="A_Double_Widget_Opacity">1</system:Double>
-    
+
     <Color x:Key="A_Color_Player_0">#BB3333</Color>
     <Color x:Key="A_Color_Player_1">#3366CC</Color>
     <Color x:Key="A_Color_Player_2">#CCBB11</Color>
@@ -61,7 +61,7 @@
     <TransformGroup x:Key="A_Transform_DropShadow">
         <TranslateTransform X="1.5" Y="1.5" />
     </TransformGroup>
-    
+
     <FontFamily x:Key="Roboto">pack://application:,,,/Ui/Fonts/#Roboto</FontFamily>
 
     <Style x:Key="A_Style_TextBlock_Heading" TargetType="TextBlock">
@@ -248,7 +248,7 @@
                 </EasingDoubleKeyFrame.EasingFunction>
             </EasingDoubleKeyFrame>
         </DoubleAnimationUsingKeyFrames>
-        
+
         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Pulse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
             <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
             <EasingDoubleKeyFrame KeyTime="00:00:00.25" Value="1">
@@ -308,7 +308,7 @@
                             <SolidColorBrush Color="#FFFFF300" />
                         </Ellipse.Fill>
                     </Ellipse>
-                    
+
                     <ContentControl Name="IsActiveGraphic" Width="13" Content="!" VerticalAlignment="Center" HorizontalAlignment="Left" ContentTemplate="{StaticResource A_DataTemplate_SquareInfoGraphic}" RenderTransformOrigin="0.5 0.5">
                         <ContentControl.RenderTransform>
                             <TransformGroup>
@@ -773,11 +773,25 @@
                             </ContentControl>
                         </Grid>
                     </Grid>
-                    
-                    <Grid VerticalAlignment="Bottom">
-                        <TextBlock Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Heading}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}" />
-                        <TextBlock Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Heading}" />
-                    </Grid>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Grid VerticalAlignment="Bottom">
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Heading}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}" />
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Heading}" />
+                        </Grid>
+                        <TextBlock Name="Captureable" Foreground="White" HorizontalAlignment="Right" Margin="0,0,-1,0">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Text" Value=""/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CanBeCaptured}" Value="True">
+                                            <Setter Property="Text" Value="*"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
                 </StackPanel>
 
                 <Grid Margin="0 2 0 0">
@@ -786,26 +800,34 @@
                             <SolidColorBrush Color="{StaticResource A_Color_Monster_Bar}" />
                         </ContentControl.Foreground>
                     </ContentControl>
-                    
-                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 2 0 0">
-                        <TextBlock Name="HealthBlockShadow" Style="{StaticResource A_Style_TextBlock_Standard}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}">
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0:0}/{1:0} ({2})">
-                                    <Binding Path="Health.Current" Mode="OneWay" />
-                                    <Binding Path="Health.Max" Mode="OneWay" />
-                                    <Binding Path="Health.Fraction" Converter="{StaticResource A_Converter_FractionToPercentage}" Mode="OneWay" />
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                        <TextBlock Name="HealthBlock" Style="{StaticResource A_Style_TextBlock_Standard}">
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="{}{0:0}/{1:0} ({2})">
-                                    <Binding Path="Health.Current" Mode="OneWay" />
-                                    <Binding Path="Health.Max" Mode="OneWay" />
-                                    <Binding Path="Health.Fraction" Converter="{StaticResource A_Converter_FractionToPercentage}" Mode="OneWay" />
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="7*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="White" HorizontalAlignment="Right" BorderThickness="1" Grid.Column="0" Opacity="0.8">
+                        </Border>
+
+                        <Grid HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="0 2 0 0">
+                            <TextBlock Name="HealthBlockShadow" Style="{StaticResource A_Style_TextBlock_Standard}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0:0}/{1:0} ({2})">
+                                        <Binding Path="Health.Current" Mode="OneWay" />
+                                        <Binding Path="Health.Max" Mode="OneWay" />
+                                        <Binding Path="Health.Fraction" Converter="{StaticResource A_Converter_FractionToPercentage}" Mode="OneWay" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Name="HealthBlock" Style="{StaticResource A_Style_TextBlock_Standard}">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0:0}/{1:0} ({2})">
+                                        <Binding Path="Health.Current" Mode="OneWay" />
+                                        <Binding Path="Health.Max" Mode="OneWay" />
+                                        <Binding Path="Health.Fraction" Converter="{StaticResource A_Converter_FractionToPercentage}" Mode="OneWay" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Grid>
                     </Grid>
                 </Grid>
             </StackPanel>
@@ -820,7 +842,7 @@
                 <Setter TargetName="Root" Property="Opacity" Value="1" />
                 <Setter TargetName="PartsControl" Property="ItemsSource" Value="{Binding Parts}" />
             </Trigger>
-            
+
             <DataTrigger Binding="{Binding IsVisible}" Value="True">
                 <DataTrigger.EnterActions>
                     <StopStoryboard BeginStoryboardName="Hide" />
@@ -1089,7 +1111,7 @@
             <DataTrigger Binding="{Binding Damage}" Value="0">
                 <Setter TargetName="DescriptionContainer" Property="Visibility" Value="Collapsed" />
             </DataTrigger>
-            
+
             <DataTrigger Binding="{Binding ., Converter={StaticResource A_Converter_PlayerToPlayerIndex}}" Value="0">
                 <Setter TargetName="Bar" Property="Foreground">
                     <Setter.Value>
@@ -1181,7 +1203,7 @@
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
-                    
+
                     <TextBlock Name="NameBlock" Style="{StaticResource A_Style_TextBlock_Standard}">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="{}{0:0} ({1:0})">
@@ -1315,8 +1337,8 @@
             </DataTrigger>
         </DataTemplate.Triggers>
     </DataTemplate>
-    
-    
+
+
     <!--Widget Controls-->
 
     <Style x:Key="A_Style_ItemsControl_Monsters" TargetType="ItemsControl">
