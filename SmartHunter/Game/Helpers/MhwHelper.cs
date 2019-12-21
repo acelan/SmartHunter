@@ -22,6 +22,11 @@ namespace SmartHunter.Game.Helpers
             return (ulong)((long)address + offset);
         }
 
+        public static class TeamInfo
+        {
+            public static List<Player> TeamList = new List<Player>();
+        }
+
         // TODO: Wouldn't it be nice if all this were data driven?
         private static class DataOffsets
         {
@@ -114,6 +119,7 @@ namespace SmartHunter.Game.Helpers
             {
                 public static readonly ulong Damage = 0x48;
             }
+
         }
 
         public static void UpdatePlayerWidget(Process process, ulong baseAddress, ulong equipmentAddress, ulong weaponAddress)
@@ -218,6 +224,7 @@ namespace SmartHunter.Game.Helpers
 
             if (updatedPlayers.Any())
             {
+                TeamInfo.TeamList = updatedPlayers;
                 OverlayViewModel.Instance.TeamWidget.Context.UpdateFractions();
             }
             else if (OverlayViewModel.Instance.TeamWidget.Context.Players.Any())

@@ -85,6 +85,7 @@
     <Compile Include="Core\Data\WidgetContext.cs" />
     <Compile Include="Core\PointerTrace.cs" />
     <Compile Include="Core\PointerTraceLevel.cs" />
+    <Compile Include="Env.cs" />
     <Compile Include="Game\Config\DebugConfig.cs" />
     <Compile Include="Game\Config\MemoryConfig.cs" />
     <Compile Include="Game\Config\MonsterCrownConfig.cs" />
