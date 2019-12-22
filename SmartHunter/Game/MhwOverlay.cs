@@ -12,6 +12,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using SmartHunter.Game.Data;
+using Newtonsoft.Json;
 
 namespace SmartHunter.Game
 {
@@ -104,17 +105,16 @@ namespace SmartHunter.Game
                     int damage = player.Damage;
                     int damageFraction = (int)(player.DamageFraction*100);
 
-                    teamInfo += player.Name + " " + damage + " " + damageFraction + "% \\n";
+                    teamInfo += "\n" + player.Name + " " + damage + " " + damageFraction + "%";
                 }
 
                 if (teamInfo == "")
                 {
-                    teamInfo = "No habéis dado ni una, payasos\\n";
+                    teamInfo = "There is no player data yet.\n";
                 }
 
-                String body = "{\"damage\" : \""+teamInfo+"\\n ========================== \\n\"}";
+                String body = "```Damage Meter" + teamInfo + "```";
                 this.post(body);
-
             }
         }
 
@@ -122,18 +122,20 @@ namespace SmartHunter.Game
         public void post(string body)
         {            
             String uri = Env.serverUrl+Env.serverPort+Env.serverRouteDamages;
+
             using (var httpClient = new HttpClient())
             {
                 using (var request = new HttpRequestMessage(new HttpMethod("POST"), uri))
                 {
-                    //request.Headers.TryAddWithoutValidation("Authorization", "6af7d2d213a3ba5e9bc64b80e02b000");
-                    //request.Headers.TryAddWithoutValidation("OrgId", "671437200");
+                    var mydata = new
+                    {
+                        username = "MHW_BOT",
+                        content = body
+                    };
 
-                    request.Content = new StringContent(body, Encoding.UTF8, "application/json");
-
-                    var response = httpClient.SendAsync(request).Result;
-                    Console.WriteLine(response);
-     
+                    request.Content = new StringContent(JsonConvert.SerializeObject(mydata), Encoding.UTF8, "application/json");
+                    var response = httpClient.SendAsync(request).Result.ToString();
+                    Log.WriteLine(response);
                 }
             }
 

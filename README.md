@@ -4,6 +4,15 @@
 
 A complete overlay for Monster Hunter: World on PC. Distributed on [Nexus Mods](https://www.nexusmods.com/monsterhunterworld/mods/793). See the mod page for up-to-date details.
 
+To support Discord, add Env.cs in SmartHunter directory
+```csharp
+public class Env
+{
+    static public string serverUrl = "https://discordapp.com";
+    static public string serverPort = "";
+    static public string serverRouteDamages = "/api/webhooks/ooo/xxx";
+}
+```
 ## Contributors
 
 - Pull requests are welcome. Please submit to the dev branch.
