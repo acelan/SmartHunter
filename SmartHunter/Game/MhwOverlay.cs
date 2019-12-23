@@ -104,16 +104,24 @@ namespace SmartHunter.Game
                 {
                     int damage = player.Damage;
                     int damageFraction = (int)(player.DamageFraction*100);
+                    double damagePerSecond = player.DamagePerSecond;
 
-                    teamInfo += "\n" + player.Name + " " + damage + " " + damageFraction + "%";
+                    teamInfo += "\n" + player.Name + " " + damage + " (" + damageFraction + "%) DPS: " + damagePerSecond;
                 }
 
                 if (teamInfo == "")
                 {
-                    teamInfo = "There is no player data yet.\n";
+                    teamInfo = "\nThere is no player data yet.\n";
                 }
 
-                String body = "```Damage Meter" + teamInfo + "```";
+                var monsterName = "";
+                if (OverlayViewModel.Instance.MonsterWidget.Context.Monsters.Any())
+                {
+                    var monsterId = OverlayViewModel.Instance.MonsterWidget.Context.Monsters.ElementAt(0).Id;
+                    Log.WriteLine("monster id = " + monsterId);
+                    monsterName = LocalizationHelper.GetMonsterName(monsterId);
+                }
+                String body = "```Damage Meter(" + monsterName + ")" + teamInfo + "```";
                 this.post(body);
             }
         }
