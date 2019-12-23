@@ -9,7 +9,7 @@ namespace SmartHunter.Game.Helpers
         static readonly string s_MainFileName = "Config.json";
 
         static ConfigContainer<MainConfig> s_Main;
-        static ConfigContainer<LocalizationConfig> s_Localization;
+        static ConfigContainer<LocalizationConfig_zhTW> s_Localization;
         static ConfigContainer<MonsterDataConfig> s_MonsterData;
         static ConfigContainer<PlayerDataConfig> s_PlayerData;
         static ConfigContainer<MemoryConfig> s_Memory;
@@ -28,13 +28,13 @@ namespace SmartHunter.Game.Helpers
             }
         }
 
-        public static ConfigContainer<LocalizationConfig> Localization
+        public static ConfigContainer<LocalizationConfig_zhTW> Localization
         {
             get
             {
                 if (s_Localization == null)
                 {
-                    s_Localization = new ConfigContainer<LocalizationConfig>(Main.Values.LocalizationFileName);
+                    s_Localization = new ConfigContainer<LocalizationConfig_zhTW>(Main.Values.LocalizationFileName);
                 }
 
                 return s_Localization;
