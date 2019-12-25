@@ -44,11 +44,25 @@ namespace SmartHunter.Game.Data
         readonly Queue<(DateTime, int)> m_damageHistory = new Queue<(DateTime, int)>();
         public Queue<(DateTime, int)> DamageHistory => m_damageHistory;
 
-        double _damagePerSecond;
+        DateTime m_CombatStart;
+        public DateTime CombatStart
+        {
+            get { return m_CombatStart; }
+            set { SetProperty(ref m_CombatStart, value); }
+        }
+
+        double m_CurrentDPS;
+        public double CurrentDPS
+        {
+            get { return m_CurrentDPS; }
+            set { SetProperty(ref m_CurrentDPS, value); }
+        }
+
+        double m_DamagePerSecond;
         public double DamagePerSecond
         {
-            get { return _damagePerSecond; }
-            set { SetProperty(ref _damagePerSecond, value); }
+            get { return m_DamagePerSecond; }
+            set { SetProperty(ref m_DamagePerSecond, value); }
         }
     }
 }

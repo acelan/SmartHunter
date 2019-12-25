@@ -1,4 +1,5 @@
-﻿using SmartHunter.Core.Data;
+﻿using SmartHunter.Core;
+using SmartHunter.Core.Data;
 using SmartHunter.Game.Helpers;
 using System;
 using System.Collections.ObjectModel;
@@ -67,16 +68,41 @@ namespace SmartHunter.Game.Data.WidgetContexts
                 player.Name = LocalizationHelper.GetString(LocalizationHelper.UnknownPlayerStringId);
             }
 
+            // Player doesn't encounter the monster yet
+            if (damage == 0)
+                return player;
+
             int damageDifference = damage - player.Damage;
             DateTime now = DateTime.Now;
 
-            player.DamageHistory.Enqueue((now, damageDifference));
-            DateTime historyCutoff = now - TimeSpan.FromSeconds(DPSTimeWindowInSeconds);
-            while (player.DamageHistory.Peek().Item1 < historyCutoff)
-                player.DamageHistory.Dequeue();
-            int historyLengthInSeconds = (now - player.DamageHistory.Peek().Item1).Seconds;
-            player.DamagePerSecond = player.DamageHistory.Sum(entry => entry.Item2) / (double)historyLengthInSeconds;
+            if (player.Damage == 0 && damage != 0)
+                player.CombatStart = now;
+#if DEBUG
+            if (damageDifference != 0)
+                Log.WriteLine(now + " - " + player.Name + " : current damage = " + damage + " , previous damage = " + player.Damage);
+#endif
+            if (damageDifference != 0)
+                player.DamageHistory.Enqueue((now, damageDifference));
 
+            DateTime historyCutoff = now - TimeSpan.FromSeconds(DPSTimeWindowInSeconds);
+            while (player.DamageHistory.Any() && (player.DamageHistory.Peek().Item1 < historyCutoff))
+                player.DamageHistory.Dequeue();
+
+            if (player.DamageHistory.Any())
+            {
+                double historyLengthInSeconds = (now - player.DamageHistory.Peek().Item1).TotalSeconds;
+                player.CurrentDPS = player.DamageHistory.Sum(entry => entry.Item2) / (double)historyLengthInSeconds;
+            }
+            else
+                player.CurrentDPS = 0;
+#if DEBUG
+            if (damageDifference != 0)
+                Log.WriteLine(player.Name + " : Total damage = " + damage + ", Total seconds = " + (now - player.CombatStart).TotalSeconds);
+#endif
+            if ((now - player.CombatStart).TotalSeconds != 0)
+                player.DamagePerSecond = damage / (now - player.CombatStart).TotalSeconds;
+            else
+                player.DamagePerSecond = 999.99;
             player.Damage = damage;
 
             return player;

@@ -56,7 +56,7 @@ namespace SmartHunter.Game
                 OverlayViewModel.Instance.CanManipulateWindows = true;
 
                 if (!ShowWindows)
-                { 
+                {
                     // Make all the windows selectable
                     foreach (var widgetWindow in WidgetWindows)
                     {
@@ -104,9 +104,9 @@ namespace SmartHunter.Game
                 {
                     int damage = player.Damage;
                     int damageFraction = (int)(player.DamageFraction*100);
-                    double damagePerSecond = player.DamagePerSecond;
+                    double currentDPS = player.CurrentDPS, dps = player.DamagePerSecond;
 
-                    teamInfo += "\n" + player.Name + " " + damage + " (" + damageFraction + "%) DPS: " + damagePerSecond;
+                    teamInfo += "\n" + player.Name + " " + damage + " (" + damageFraction + "%) DPS: " + currentDPS.ToString("F2") + "(" + dps.ToString("F2") + ")";
                 }
 
                 if (teamInfo == "")
@@ -118,7 +118,9 @@ namespace SmartHunter.Game
                 if (OverlayViewModel.Instance.MonsterWidget.Context.Monsters.Any())
                 {
                     var monsterId = OverlayViewModel.Instance.MonsterWidget.Context.Monsters.ElementAt(0).Id;
+#if DEBUG
                     Log.WriteLine("monster id = " + monsterId);
+#endif
                     monsterName = LocalizationHelper.GetMonsterName(monsterId);
                 }
                 String body = "```Damage Meter(" + monsterName + ")" + teamInfo + "```";
@@ -130,7 +132,10 @@ namespace SmartHunter.Game
         public void post(string body)
         {            
             String uri = Env.serverUrl+Env.serverPort+Env.serverRouteDamages;
-
+#if DEBUG
+            Log.WriteLine("uri = " + uri);
+            Log.WriteLine("body = " + body);
+#endif
             using (var httpClient = new HttpClient())
             {
                 using (var request = new HttpRequestMessage(new HttpMethod("POST"), uri))
@@ -143,7 +148,9 @@ namespace SmartHunter.Game
 
                     request.Content = new StringContent(JsonConvert.SerializeObject(mydata), Encoding.UTF8, "application/json");
                     var response = httpClient.SendAsync(request).Result.ToString();
+#if DEBUG
                     Log.WriteLine(response);
+#endif
                 }
             }
 
