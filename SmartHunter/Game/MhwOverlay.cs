@@ -20,14 +20,6 @@ namespace SmartHunter.Game
     {
         MhwMemoryUpdater m_MemoryUpdater;
 
-        protected override bool ShowWindows
-        {
-            get
-            {
-                return ConfigHelper.Main.Values.Overlay.ShowWindows;
-            }
-        }
-
         public MhwOverlay(Window mainWindow, params WidgetWindow[] widgetWindows) : base(mainWindow, widgetWindows)
         {
             ConfigHelper.Main.Loaded += (s, e) => { UpdateWidgetsFromConfig(); };
@@ -55,13 +47,10 @@ namespace SmartHunter.Game
             {
                 OverlayViewModel.Instance.CanManipulateWindows = true;
 
-                if (!ShowWindows)
+                // Make all the windows selectable
+                foreach (var widgetWindow in WidgetWindows)
                 {
-                    // Make all the windows selectable
-                    foreach (var widgetWindow in WidgetWindows)
-                    {
-                        WindowHelper.SetTopMostSelectable(widgetWindow as Window);
-                    }
+                    WindowHelper.SetTopMostSelectable(widgetWindow as Window);
                 }
             }
             else if (control == InputControl.ManipulateWidget && !isDown && OverlayViewModel.Instance.CanManipulateWindows)
@@ -73,10 +62,7 @@ namespace SmartHunter.Game
                 // Return all windows to their click through state
                 foreach (var widgetWindow in WidgetWindows)
                 {
-                    if (!ShowWindows)
-                    {
-                        WindowHelper.SetTopMostTransparent(widgetWindow as Window);
-                    }
+                    WindowHelper.SetTopMostTransparent(widgetWindow as Window);
 
                     if (widgetWindow.Widget.CanSaveConfig)
                     {
