@@ -1,6 +1,8 @@
 .vs
-bin
+SmartHunter/bin/x64/Debug/*
 obj
 *.user
 SmartHunter/Env.cs
 *.pfx
+
+!SmartHunter/bin/x64/Debug/SmartHunter.exe
