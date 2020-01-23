@@ -14,7 +14,7 @@ namespace SmartHunter.Game.Config
         public string MemoryFileName = "Memory.json";
 
         public bool ShutdownWhenProcessExits = false;
-        public bool AutomaticallyCheckAndDownloadUpdates = true;
+        public bool AutomaticallyCheckAndDownloadUpdates = false;
 
         public OverlayConfig Overlay = new OverlayConfig();
 
