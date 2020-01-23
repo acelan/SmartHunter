@@ -28,8 +28,8 @@ namespace SmartHunter.Core.Helpers
     public class Updater
     {
         private List<UpdateNode> NeedUpdates = new List<UpdateNode>();
-        private string ApiEndpoint = "https://api.github.com/repos/gabrielefilipp/SmartHunter/commits?path=";
-        private string ApiRaw = "https://github.com/gabrielefilipp/SmartHunter/raw";
+        private string ApiEndpoint = "https://api.github.com/repos/acelan/SmartHunter/commits?path=";
+        private string ApiRaw = "https://github.com/acelan/SmartHunter/raw";
         private string dummyUserAgent = "Mozilla/4.0 (Compatible; Windows NT 5.1; MSIE 6.0) (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
 
         public bool CheckForUpdates(bool forceCheck = false)
