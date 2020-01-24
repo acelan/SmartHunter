@@ -6,3 +6,4 @@ SmartHunter/Env.cs
 *.pfx
 
 !SmartHunter/bin/x64/Debug/SmartHunter.exe
+!SmartHunter/bin/x64/Debug/Newtonsoft.Json.dll
