@@ -103,11 +103,21 @@ namespace SmartHunter.Game
                 var monsterName = "";
                 if (OverlayViewModel.Instance.MonsterWidget.Context.Monsters.Any())
                 {
-                    var monsterId = OverlayViewModel.Instance.MonsterWidget.Context.Monsters.ElementAt(0).Id;
+                    var len = OverlayViewModel.Instance.MonsterWidget.Context.Monsters.Count;
+                    var monsterId = OverlayViewModel.Instance.MonsterWidget.Context.Monsters.ElementAt(len-1).Id;
 #if DEBUG
+                    while (len > 0)
+                    {
+                        len -= 1;
+                        if (monsterName == "")
+                            monsterName = LocalizationHelper.GetMonsterName(monsterId);
+                        else
+                            monsterName = monsterName + " + " + LocalizationHelper.GetMonsterName(monsterId);
+                        Log.WriteLine("monster id = " + OverlayViewModel.Instance.MonsterWidget.Context.Monsters.ElementAt(len).Id);
+                    }
+
                     Log.WriteLine("monster id = " + monsterId);
 #endif
-                    monsterName = LocalizationHelper.GetMonsterName(monsterId);
                 }
                 String body = "```Damage Meter(" + monsterName + ")" + teamInfo + "```";
                 this.post(body);

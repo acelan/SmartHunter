@@ -1,4 +1,5 @@
-﻿using SmartHunter.Core.Data;
+﻿using SmartHunter.Core;
+using SmartHunter.Core.Data;
 using SmartHunter.Game.Helpers;
 using System.Linq;
 
@@ -81,6 +82,12 @@ namespace SmartHunter.Game.Data
         {
             if (ConfigHelper.MonsterData.Values.Monsters.TryGetValue(monsterId, out var monsterConfig))
             {
+                if (monsterConfig.Parts == null)
+                {
+                    Log.WriteLine("monster id = " + monsterId + " has no parts");
+                    return "";
+                }
+
                 var parts = monsterConfig.Parts.Where(part => part.IsRemovable == isRemovable);
                 if (parts.Count() > index)
                 {
