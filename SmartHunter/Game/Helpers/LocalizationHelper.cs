@@ -34,7 +34,7 @@ namespace SmartHunter.Game.Helpers
 
             Log.WriteLine($"Localization: Monster '{monsterId}' not found in {ConfigHelper.MonsterData.FileName}");
 
-            return GetString(UnknownMonsterStringId);
+            return GetString(UnknownMonsterStringId) + "(" + monsterId + ")";
         }
 
         public static string GetMonsterPartName(string monsterId, int partIndex, bool isRemovable)
