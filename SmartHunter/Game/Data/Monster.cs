@@ -34,6 +34,22 @@ namespace SmartHunter.Game.Data
             }
         }
 
+        public bool isElder
+        {
+            get
+            {
+                bool elder = false;
+
+                MonsterConfig config = null;
+                if (ConfigHelper.MonsterData.Values.Monsters.TryGetValue(Id, out config))
+                {
+                    elder = config.isElder;
+                }
+
+                return elder;
+            }
+        }
+
         public string Name
         {
             get
@@ -165,9 +181,10 @@ namespace SmartHunter.Game.Data
             return part;
         }
 
-        public MonsterStatusEffect UpdateAndGetStatusEffect(int index, float maxBuildup, float currentBuildup, float maxDuration, float currentDuration, int timesActivatedCount)
+        public MonsterStatusEffect UpdateAndGetStatusEffect(ulong address, int index, float maxBuildup, float currentBuildup, float maxDuration, float currentDuration, int timesActivatedCount)
         {
-            MonsterStatusEffect statusEffect = StatusEffects.SingleOrDefault(collectionStatusEffect => collectionStatusEffect.Index == index);
+            MonsterStatusEffect statusEffect = StatusEffects.SingleOrDefault(collectionStatusEffect => collectionStatusEffect.Index == index); // TODO: check address???
+            
             if (statusEffect != null)
             {
                 statusEffect.Duration.Max = maxDuration;
@@ -178,7 +195,7 @@ namespace SmartHunter.Game.Data
             }
             else
             {
-                statusEffect = new MonsterStatusEffect(this, index, maxBuildup, currentBuildup, maxDuration, currentDuration, timesActivatedCount);
+                statusEffect = new MonsterStatusEffect(this, address, index, maxBuildup, currentBuildup, maxDuration, currentDuration, timesActivatedCount);
                 statusEffect.Changed += PartOrStatusEffect_Changed;
 
                 StatusEffects.Add(statusEffect);

@@ -28,7 +28,7 @@ public class Env
 
 - Download `SmartHunter.exe` and `Newtonsoft.Json.dll` from here https://github.com/gabrielefilipp/SmartHunter/tree/master/SmartHunter/bin/x64/Debug.
 - Place them in a new folder.
-- IMPORTANT: If you are replacing the new `.exe` in the same folder of the old SmartHunter please REMEMBER to delete `Config.json`.
+- IMPORTANT: If you are replacing the new `.exe` in the same folder of the old SmartHunter please just follow the instructions `## How to update`.
 - You're ready for the hunt.
 
 ## How to use
