@@ -502,22 +502,6 @@ namespace SmartHunter.Config
             { "LOC_REMOVABLE_PART_HORNS", "可斷的角" },
             { "LOC_REMOVABLE_PART_HORNS_2", "大角的黃金" },
 
-            { "LOC_STATUS_EFFECT_UNKNOWN", "未知效果狀態" },
-            { "LOC_STATUS_EFFECT_POISON", "中毒" },
-            { "LOC_STATUS_EFFECT_PARALYSIS", "麻痺" },
-            { "LOC_STATUS_EFFECT_SLEEP", "睡眠" },
-            { "LOC_STATUS_EFFECT_BLAST", "爆破" },
-            { "LOC_STATUS_EFFECT_MOUNT", "騎乘" },
-            { "LOC_STATUS_EFFECT_EXHAUST", "疲勞" },
-            { "LOC_STATUS_EFFECT_STUN", "眩暈" },
-            { "LOC_STATUS_EFFECT_KO", "KO" },
-            { "LOC_STATUS_EFFECT_TRANQUILIZE", "麻醉" },
-            { "LOC_STATUS_EFFECT_FLASH", "目眩" },
-            { "LOC_STATUS_EFFECT_DUNG", "異臭" },
-            { "LOC_STATUS_EFFECT_KNOW_DOWN", "Kown Down" },
-            { "LOC_STATUS_EFFECT_SMOKING", "Smoking" },
-            { "LOC_STATUS_EFFECT_VIOLATED", "Violated" },
-
             //To test monster parts
             { "LOC_PART_0", "0" },
             { "LOC_PART_1", "1" },
@@ -555,7 +539,23 @@ namespace SmartHunter.Config
 
             //statuses
             { "LOC_STATUS_0", "Status 0" },
+            { "LOC_STATUS_EFFECT_UNKNOWN", "未知效果狀態" },
+            { "LOC_STATUS_EFFECT_POISON", "中毒" },
+            { "LOC_STATUS_EFFECT_PARALYSIS", "麻痺" },
+            { "LOC_STATUS_EFFECT_SLEEP", "睡眠" },
+            { "LOC_STATUS_EFFECT_BLAST", "爆破" },
+            { "LOC_STATUS_EFFECT_MOUNT", "騎乘" },
+            { "LOC_STATUS_EFFECT_EXHAUST", "疲勞" },
+            { "LOC_STATUS_EFFECT_STUN", "眩暈" },
+            { "LOC_STATUS_EFFECT_KO", "KO" },
+            { "LOC_STATUS_EFFECT_TRANQUILIZE", "麻醉" },
+            { "LOC_STATUS_EFFECT_FLASH", "目眩" },
+            { "LOC_STATUS_EFFECT_DUNG", "異臭" },
+            { "LOC_STATUS_EFFECT_KNOW_DOWN", "Kown Down" },
+            { "LOC_STATUS_EFFECT_SMOKING", "Smoking" },
+            { "LOC_STATUS_EFFECT_VIOLATED", "Violated" },
             { "LOC_STATUS_EFFECT_CLAW_ATTACK", "Claw Attack" },
+            { "LOC_STATUS_EFFECT_FELVYNE_KNOCK_DOWN_TRAP", "Felvyne Knock Down Trap" },
 
             // Hunting Horn
             { "LOC_STATUS_EFFECT_SELF_IMPROVEMENT", "自我強化" },
