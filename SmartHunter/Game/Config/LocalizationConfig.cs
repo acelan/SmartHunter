@@ -370,7 +370,7 @@ namespace SmartHunter.Config
             { "LOC_MONSTER_ZINOGRE", "雷狼龍" },
             { "LOC_MONSTER_PAOLUMU_NIGHTSHADE", "浮眠龍" },
             { "LOC_MONSTER_EBONY_ODOGARON", "凶爪龍" },
-            { "LOC_MONSTER_ANJANATH_FULGAR", "雷顎龍" },
+            { "LOC_MONSTER_ANJANATH_FULGUR", "雷顎龍" },
             { "LOC_MONSTER_PUKEI_PUKEI_CORAL", "水妖鳥" },
             { "LOC_MONSTER_BRACHYDIOS", "碎龍" },
             { "LOC_MONSTER_VELKHANA", "冰呪龍" },
