@@ -541,6 +541,11 @@ namespace SmartHunter.Config
             { "LOC_PART_30", "30" },
             { "LOC_PART_31", "31" },
             { "LOC_PART_32", "32" },
+            
+            //removables
+            { "LOC_REMOVABLE_PART_HEAD", "頭" },
+            { "LOC_REMOVABLE_PART_HEAD_HEAD", "頭+" },
+            { "LOC_REMOVABLE_PART_HEAD_HEAD_HEAD", "頭++" },
 
             //statuses
             { "LOC_STATUS_0", "Status 0" },
@@ -556,7 +561,7 @@ namespace SmartHunter.Config
             { "LOC_STATUS_EFFECT_TRANQUILIZE", "麻醉" },
             { "LOC_STATUS_EFFECT_FLASH", "目眩" },
             { "LOC_STATUS_EFFECT_DUNG", "異臭" },
-            { "LOC_STATUS_EFFECT_KNOW_DOWN", "Kown Down" },
+            { "LOC_STATUS_EFFECT_KNOW_DOWN", "擊倒" },
             { "LOC_STATUS_EFFECT_SMOKING", "Smoking" },
             { "LOC_STATUS_EFFECT_VIOLATED", "Violated" },
             { "LOC_STATUS_EFFECT_CLAW_ATTACK", "Claw Attack" },
