@@ -1,4 +1,7 @@
-﻿using SmartHunter.Core;
+﻿using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+using SmartHunter.Core;
 using SmartHunter.Core.Helpers;
 using SmartHunter.Core.Windows;
 using SmartHunter.Game.Data.ViewModels;
@@ -8,9 +11,6 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 
-using System.Linq;
-using System.Windows;
-using System.Windows.Input;
 using SmartHunter.Game.Data;
 using Newtonsoft.Json;
 

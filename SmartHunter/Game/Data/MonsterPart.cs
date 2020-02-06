@@ -1,7 +1,8 @@
-﻿using SmartHunter.Core;
+using SmartHunter.Core;
+using System.ComponentModel;
+using System.Linq;
 using SmartHunter.Core.Data;
 using SmartHunter.Game.Helpers;
-using System.Linq;
 
 namespace SmartHunter.Game.Data
 {
@@ -62,7 +63,7 @@ namespace SmartHunter.Game.Data
             Health.PropertyChanged += Health_PropertyChanged;
         }
 
-        private void MonsterPart_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void MonsterPart_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(TimesBrokenCount))
             {
@@ -70,7 +71,7 @@ namespace SmartHunter.Game.Data
             }
         }
 
-        private void Health_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Health_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Progress.Current))
             {
