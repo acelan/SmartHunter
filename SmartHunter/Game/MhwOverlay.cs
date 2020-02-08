@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using SmartHunter.Core;
@@ -112,8 +112,11 @@ namespace SmartHunter.Game
                         if (monsterName == "")
                             monsterName = LocalizationHelper.GetMonsterName(monsterId);
                         else
+                        {
+                            monsterId = OverlayViewModel.Instance.MonsterWidget.Context.Monsters.ElementAt(len - 1).Id;
                             monsterName = monsterName + " + " + LocalizationHelper.GetMonsterName(monsterId);
-                        Log.WriteLine("monster id = " + OverlayViewModel.Instance.MonsterWidget.Context.Monsters.ElementAt(len).Id);
+                        }
+                        Log.WriteLine("monster id = " + monsterId + ", name = " + LocalizationHelper.GetMonsterName(monsterId));
                     }
 
                     Log.WriteLine("monster id = " + monsterId);
