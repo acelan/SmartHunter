@@ -373,6 +373,8 @@ namespace SmartHunter.Config
             { "LOC_WIDGET_TEAM", "團隊小部件" },
             { "LOC_WIDGET_PLAYER", "玩家小部件" },
 
+            // Iceborne monsters
+
             { "LOC_MONSTER_NARCACUGA", "迅龍" },
             { "LOC_MONSTER_NAMIELLE", "溟波龍" },
             { "LOC_MONSTER_SHARA_ISHVALDA", "天地煌啼龍" },
@@ -400,6 +402,7 @@ namespace SmartHunter.Config
             { "LOC_MONSTER_SCARRED_YIAN_GARUGA", "戰痕黑狼鳥" },
             { "LOC_MONSTER_GOLD_RATHIAN", "金火龍" },
             { "LOC_MONSTER_SILVER_RATHALOS", "銀火龍" },
+            { "LOC_MONSTER_RAJANG", "金獅子" },
 
             { "LOC_MONSTER_UKNOWN", "未知魔物" },
             { "LOC_MONSTER_ANJANATH", "蠻顎龍" },
@@ -477,6 +480,7 @@ namespace SmartHunter.Config
             { "LOC_PART_LIMBS_LEFT", "左爪" },
             { "LOC_PART_LIMBS_RIGHT", "右爪" },
             { "LOC_PART_TAIL", "尾巴" },
+            { "LOC_PART_TAIL_BLADE", "Tail Blade" },
             { "LOC_PART_WINGS", "翅膀" },
             { "LOC_PART_WING_LEFT", "左翅膀" },
             { "LOC_PART_WING_RIGHT", "右翅膀" },
@@ -652,6 +656,7 @@ namespace SmartHunter.Config
             { "LOC_STATUS_EFFECT_ARMORSKIN", "硬化藥" },
             { "LOC_STATUS_EFFECT_MEGA_ARMORSKIN", "硬化藥·大" },
             { "LOC_STATUS_EFFECT_COOL_DRINK", "冷飲" },
+            { "LOC_STATUS_EFFECT_HOT_DRINK", "熱飲" },
             { "LOC_STATUS_EFFECT_PROTECTIVE_POLISH", "鋼刃研磨" },
             { "LOC_STATUS_EFFECT_AFFINITY_SLIDING", "滑走強化" },
 
@@ -673,6 +678,8 @@ namespace SmartHunter.Config
             { "LOC_EQUIPMENT_MANTLE_IMMUNITY", "免疫衣裝" },
             { "LOC_EQUIPMENT_MANTLE_BANDIT", "盜掠衣裝" },
             { "LOC_EQUIPMENT_AFFINITY_BOOSTER", "達人煙筒" },
+            { "LOC_EQUIPMENT_CLEANSER_BOOSTER", "Cleanser Booster" },
+            { "LOC_EQUIPMENT_HEALTH_BOOSTER", "Health Booster" },
 
             // Weapon
             { "LOC_WEAPON_INSECT_GLAIVE_ATTACK", "攻擊力UP" },
