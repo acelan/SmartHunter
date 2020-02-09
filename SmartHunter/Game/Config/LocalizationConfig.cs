@@ -702,7 +702,32 @@ namespace SmartHunter.Config
             { "LOC_EQUIPMENT_MANTLE_BANDIT", "盜掠衣裝" },
             { "LOC_EQUIPMENT_AFFINITY_BOOSTER", "達人煙筒" },
             { "LOC_EQUIPMENT_CLEANSER_BOOSTER", "Cleanser Booster" },
-            { "LOC_EQUIPMENT_HEALTH_BOOSTER", "Health Booster" },
+            { "LOC_EQUIPMENT_HEALTH_BOOSTER", "療癒煙筒" },
+            { "LOC_EQUIPMENT_ASSASSINS_HOOD", "刺客衣裝" },
+
+            // Equipment recharg time
+
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_GHILLIE", "隱身衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_TEMPORAL", "轉身衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_ROCKSTEADY", "不動衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_CHALLENGER", "挑釁衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_VITALITY", "體力衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_FIREPROOF", "耐熱衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_WATERPROOF", "耐水衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_ICEPROOF", "耐寒衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_THUNDERPROOF", "耐雷衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_DRAGONPROOF", "耐龍衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_GLIDER", "滑空衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_EVASION", "迴避衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_IMPACT", "強打衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_APOTHECARY", "化合衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_IMMUNITY", "免疫衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_MANTLE_BANDIT", "盜掠衣裝" },
+            { "LOC_EQUIPMENT_RECHARGE_AFFINITY_BOOSTER", "達人煙筒" },
+            { "LOC_EQUIPMENT_RECHARGE_CLEANSER_BOOSTER", "Recharge Cleanser Booster" },
+            { "LOC_EQUIPMENT_RECHARGE_HEALTH_BOOSTER", "療癒煙筒" },
+            { "LOC_EQUIPMENT_RECHARGE_ASSASSINS_HOOD", "刺客衣裝" },
+
 
             // Weapon
             { "LOC_WEAPON_INSECT_GLAIVE_ATTACK", "攻擊力UP" },
@@ -727,7 +752,6 @@ namespace SmartHunter.Config
             { "LOC_STATUS_EFFECT_PITFALL_TRAP", "落穴陷阱" },
             { "LOC_STATUS_EFFECT_ELDERSEAL", "龍封力" },
 
-            { "LOC_EQUIPMENT_ASSASSINS_HOOD", "刺客衣裝" },
             { "LOC_MONSTER_LESHEN", "鹿首精" },
             { "LOC_REMOVABLE_PART_ANTLER_LEFT", "左側鹿角" },
             { "LOC_REMOVABLE_PART_ANTLER_RIGHT", "右側鹿角" },
