@@ -113,7 +113,7 @@ namespace SmartHunter.Game
                             monsterName = LocalizationHelper.GetMonsterName(monsterId);
                         else
                         {
-                            monsterId = OverlayViewModel.Instance.MonsterWidget.Context.Monsters.ElementAt(len - 1).Id;
+                            monsterId = OverlayViewModel.Instance.MonsterWidget.Context.Monsters.ElementAt(len).Id;
                             monsterName = monsterName + " + " + LocalizationHelper.GetMonsterName(monsterId);
                         }
                         Log.WriteLine("monster id = " + monsterId + ", name = " + LocalizationHelper.GetMonsterName(monsterId));
@@ -147,9 +147,6 @@ namespace SmartHunter.Game
 
                     request.Content = new StringContent(JsonConvert.SerializeObject(mydata), Encoding.UTF8, "application/json");
                     var response = httpClient.SendAsync(request).Result.ToString();
-#if DEBUG
-                    Log.WriteLine(response);
-#endif
                 }
             }
 
