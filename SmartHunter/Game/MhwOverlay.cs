@@ -123,12 +123,12 @@ namespace SmartHunter.Game
 #endif
                 }
                 String body = "```Damage Meter(" + monsterName + ")" + teamInfo + "```";
-                this.post(body);
+                this.postAsync(body);
             }
         }
 
 
-        public void post(string body)
+        public async System.Threading.Tasks.Task postAsync(string body)
         {            
             String uri = Env.serverUrl+Env.serverPort+Env.serverRouteDamages;
 #if DEBUG
@@ -146,7 +146,7 @@ namespace SmartHunter.Game
                     };
 
                     request.Content = new StringContent(JsonConvert.SerializeObject(mydata), Encoding.UTF8, "application/json");
-                    var response = httpClient.SendAsync(request).Result.ToString();
+                    var response = await httpClient.SendAsync(request);
                 }
             }
 
