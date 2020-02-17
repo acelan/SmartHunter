@@ -19,6 +19,10 @@ public class Env
 }
 ```
 
+## Changelog
+
+- Look [here](https://forums.nexusmods.com/index.php?/topic/8356533-smarthunter-for-iceborne/)
+
 ## Requirements
 
 - Windows.
