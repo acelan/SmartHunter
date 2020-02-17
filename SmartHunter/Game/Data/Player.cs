@@ -1,12 +1,13 @@
-﻿using SmartHunter.Core.Data;
 using System;
 using System.Collections.Generic;
+using SmartHunter.Core.Data;
 
 namespace SmartHunter.Game.Data
 {
     public class Player : Bindable
     {
         int m_Index;
+
         public int Index
         {
             get { return m_Index; }

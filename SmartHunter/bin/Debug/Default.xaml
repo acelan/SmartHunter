@@ -787,25 +787,6 @@
                             </ContentControl>
                         </Grid>
                     </Grid>
-
-                    <StackPanel Orientation="Horizontal">
-                        <Grid VerticalAlignment="Bottom">
-                            <TextBlock Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Heading}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}" />
-                            <TextBlock Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Heading}" />
-                        </Grid>
-                        <TextBlock Name="Captureable" Foreground="White" HorizontalAlignment="Right" Margin="0,0,-1,0">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Text" Value=""/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding CanBeCaptured}" Value="True">
-                                            <Setter Property="Text" Value="*"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                    </StackPanel>
                     <!--Size-->
                     <Grid x:Name="Size" VerticalAlignment="Bottom">
                         <TextBlock Text="{Binding Size, StringFormat=\{0:N2\}}" Style="{StaticResource A_Style_TextBlock_Standard_Centered}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}" />
@@ -1009,42 +990,123 @@
 
     <DataTemplate DataType="{x:Type data:Player}">
         <Grid x:Name="Root">
-            <ContentControl x:Name="Bar" Content="{Binding BarFraction}" ContentTemplate="{StaticResource A_DataTemplate_BarProgress}" Foreground="#000000" Visibility="{Binding DataContext.ShowBars, Converter={StaticResource A_Converter_BoolToVisibility}}"/>
+            <ContentControl x:Name="Bar" Content="{Binding BarFraction}" ContentTemplate="{StaticResource A_DataTemplate_BarProgress}" Foreground="#000000"/>
 
-            <Grid Margin="6 5 6 4" Name="FightDescriptionContainer">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                
-                <TextBlock Margin="4,2,4,2" Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Standard}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}" />
-                <TextBlock Margin="4,2,4,2" Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Standard}" />
+            <DockPanel Margin="6 5 6 4">
+                <Grid>
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Standard}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}" />
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Standard}" />
+                </Grid>
 
-                <TextBlock Margin="4,2,4,2" Grid.Column="1" Visibility="{Binding DataContext.ShowNumbers, Converter={StaticResource A_Converter_BoolToVisibility}}" Text="{Binding Damage, Mode=OneWay}" Style="{StaticResource A_Style_TextBlock_Standard}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}" />
-                <TextBlock Margin="4,2,4,2" Grid.Column="1" Visibility="{Binding DataContext.ShowNumbers, Converter={StaticResource A_Converter_BoolToVisibility}}" Text="{Binding Damage, Mode=OneWay}" Style="{StaticResource A_Style_TextBlock_Standard}" />
-
-                <TextBlock Margin="4,2,4,2" Grid.Column="2" Visibility="{Binding DataContext.ShowPercents, Converter={StaticResource A_Converter_BoolToVisibility}}" Text="{Binding DamageFraction, Mode=OneWay, StringFormat='{}({0:P0})'}" Style="{StaticResource A_Style_TextBlock_Standard}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}" />
-                <TextBlock Margin="4,2,4,2" Grid.Column="2" Visibility="{Binding DataContext.ShowPercents, Converter={StaticResource A_Converter_BoolToVisibility}}" Text="{Binding DamageFraction, Mode=OneWay, StringFormat='{}({0:P0})'}" Style="{StaticResource A_Style_TextBlock_Standard}" />
-
-                <TextBlock Margin="4,2,4,2" Grid.Column="3" Visibility="{Binding DataContext.ShowDPS, Converter={StaticResource A_Converter_BoolToVisibility}}" Text="{Binding DamagePerSecond, Mode=OneWay, StringFormat='{}DPS: {0:0.#}'}" Style="{StaticResource A_Style_TextBlock_Standard}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}" />
-                <TextBlock Margin="4,2,4,2" Grid.Column="3" Visibility="{Binding DataContext.ShowDPS, Converter={StaticResource A_Converter_BoolToVisibility}}" Text="{Binding DamagePerSecond, Mode=OneWay, StringFormat='{}DPS: {0:0.#}'}" Style="{StaticResource A_Style_TextBlock_Standard}" />
-            </Grid>
-            <Grid Margin="6 5 6 4" Name="DefaultDescriptionContainer" Visibility="Collapsed">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Standard}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}" />
-                <TextBlock Text="{Binding Name}" Style="{StaticResource A_Style_TextBlock_Standard}" />
-            </Grid>
+                <Grid x:Name="DescriptionContainer" HorizontalAlignment="Right" Margin="12 0 0 0">
+                    <TextBlock x:Name="DescriptionBlockShadow" Style="{StaticResource A_Style_TextBlock_Standard}" Foreground="{StaticResource A_Brush_DropShadow}" RenderTransform="{StaticResource A_Transform_DropShadow}">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0:#,0} ({1})">
+                                <Binding Path="Damage" Mode="OneWay" />
+                                <Binding Path="DamageFraction" Mode="OneWay" Converter="{StaticResource A_Converter_FractionToPercentage}" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock x:Name="DescriptionBlock" Style="{StaticResource A_Style_TextBlock_Standard}">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0:#,0} ({1})">
+                                <Binding Path="Damage" Mode="OneWay" />
+                                <Binding Path="DamageFraction" Mode="OneWay" Converter="{StaticResource A_Converter_FractionToPercentage}" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+            </DockPanel>
         </Grid>
 
         <DataTemplate.Triggers>
-           <DataTrigger Binding="{Binding Damage}" Value="0">
-                <Setter TargetName="FightDescriptionContainer" Property="Visibility" Value="Collapsed" />
-                <Setter TargetName="DefaultDescriptionContainer" Property="Visibility" Value="Visible" />
+            <!--Show Numbers AND Percents-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding DataContext.ShowNumbers, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="True" />
+                    <Condition Binding="{Binding DataContext.ShowPercents, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="DescriptionBlockShadow" Property="Text">
+                    <Setter.Value>
+                        <MultiBinding StringFormat="{}{0} ({1})">
+                            <Binding Path="Damage" Mode="OneWay" />
+                            <Binding Path="DamageFraction" Mode="OneWay" Converter="{StaticResource A_Converter_FractionToPercentage}" />
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter TargetName="DescriptionBlock" Property="Text">
+                    <Setter.Value>
+                        <MultiBinding StringFormat="{}{0} ({1})">
+                            <Binding Path="Damage" Mode="OneWay" />
+                            <Binding Path="DamageFraction" Mode="OneWay" Converter="{StaticResource A_Converter_FractionToPercentage}" />
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </MultiDataTrigger>
+
+            <!--Show Numbers NOT Percents-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding DataContext.ShowNumbers, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="True" />
+                    <Condition Binding="{Binding DataContext.ShowPercents, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="False" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="DescriptionBlockShadow" Property="Text">
+                    <Setter.Value>
+                        <MultiBinding StringFormat="{}{0}">
+                            <Binding Path="Damage" Mode="OneWay" />
+                            <Binding Path="DamageFraction" Mode="OneWay" Converter="{StaticResource A_Converter_FractionToPercentage}" />
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter TargetName="DescriptionBlock" Property="Text">
+                    <Setter.Value>
+                        <MultiBinding StringFormat="{}{0}">
+                            <Binding Path="Damage" Mode="OneWay" />
+                            <Binding Path="DamageFraction" Mode="OneWay" Converter="{StaticResource A_Converter_FractionToPercentage}" />
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </MultiDataTrigger>
+
+            <!--Show NOT Numbers AND Percents-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding DataContext.ShowNumbers, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="False" />
+                    <Condition Binding="{Binding DataContext.ShowPercents, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="DescriptionBlockShadow" Property="Text">
+                    <Setter.Value>
+                        <MultiBinding StringFormat="{}{1}">
+                            <Binding Path="Damage" Mode="OneWay" />
+                            <Binding Path="DamageFraction" Mode="OneWay" Converter="{StaticResource A_Converter_FractionToPercentage}" />
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter TargetName="DescriptionBlock" Property="Text">
+                    <Setter.Value>
+                        <MultiBinding StringFormat="{}{1}">
+                            <Binding Path="Damage" Mode="OneWay" />
+                            <Binding Path="DamageFraction" Mode="OneWay" Converter="{StaticResource A_Converter_FractionToPercentage}" />
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </MultiDataTrigger>
+
+            <!--Show NOT Numbers NOT Percents-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding DataContext.ShowNumbers, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="False" />
+                    <Condition Binding="{Binding DataContext.ShowPercents, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="False" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="DescriptionContainer" Property="Visibility" Value="Collapsed" />
+            </MultiDataTrigger>
+
+            <DataTrigger Binding="{Binding DataContext.ShowBars, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}" Value="False">
+                <Setter TargetName="Bar" Property="Visibility" Value="Hidden" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Damage}" Value="0">
+                <Setter TargetName="DescriptionContainer" Property="Visibility" Value="Collapsed" />
             </DataTrigger>
 
             <DataTrigger Binding="{Binding ., Converter={StaticResource A_Converter_PlayerToPlayerIndex}}" Value="0">
