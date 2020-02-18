@@ -41,7 +41,7 @@ namespace SmartHunter.Game
             }
         }
 
-        private void HandleControl(InputControl control, bool isDown)
+        private async void HandleControl(InputControl control, bool isDown)
         {
             if (control == InputControl.ManipulateWidget && isDown && !OverlayViewModel.Instance.CanManipulateWindows)
             {
@@ -123,7 +123,7 @@ namespace SmartHunter.Game
 #endif
                 }
                 String body = "```Damage Meter(" + monsterName + ")" + teamInfo + "```";
-                this.postAsync(body);
+                await this.postAsync(body);
             }
         }
 
