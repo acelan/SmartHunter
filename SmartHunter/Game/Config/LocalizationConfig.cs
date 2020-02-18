@@ -399,6 +399,7 @@ namespace SmartHunter.Config
             { "LOC_WIDGET_MONSTER", "怪物小部件" },
             { "LOC_WIDGET_TEAM", "團隊小部件" },
             { "LOC_WIDGET_PLAYER", "玩家小部件" },
+            { "LOC_WIDGET_DEBUG", "除錯小部件" },
 
             // Iceborne monsters
 
@@ -544,6 +545,7 @@ namespace SmartHunter.Config
             { "LOC_REMOVABLE_PART_TAIL", "可斷的尾巴" },
             { "LOC_REMOVABLE_PART_HORNS", "可斷的角" },
             { "LOC_REMOVABLE_PART_HORNS_2", "大角的黃金" },
+            { "LOC_REMOVABLE_PART_BALOON", "Baloon" },
 
             //To test monster parts
             { "LOC_PART_0", "0" },
@@ -737,8 +739,10 @@ namespace SmartHunter.Config
             { "LOC_WEAPON_INSECT_GLAIVE_ATTACK", "攻擊力UP" },
             { "LOC_WEAPON_INSECT_GLAIVE_SPEED", "速度UP" },
             { "LOC_WEAPON_INSECT_GLAIVE_DEFENSE", "防禦力UP" },
-            { "LOC_WEAPON_LONGSWORD_SPIRIT_GAUGE_REGEN", "氣刃值回復" },
             { "LOC_WEAPON_LONGSWORD_STEADY_SPIRIT_LEVEL", "氣刃等級穩定" },
+            { "LOC_WEAPON_LONGSWORD_SPIRIT_GAUGE_REGEN", "氣刃值回復" },
+            { "LOC_WEAPON_LONGSWORD_SPIRIT_GAUGE_REGEN_HELM_BREAKER", "氣刃值回復(兜割)" },
+            { "LOC_WEAPON_LONGSWORD_SPIRIT_GAUGE_REGEN_LAI_SLASH", "氣刃值回復(拔刀斬)" },
             { "LOC_WEAPON_CHARGE_BLADE_SHIELD_CHARGE", "紅盾" },
             { "LOC_WEAPON_CHARGE_BLADE_BLADE_CHARGE", "紅刃" },
             { "LOC_WEAPON_SWITCH_AXE_AMPED_STATE", "高出力" },
