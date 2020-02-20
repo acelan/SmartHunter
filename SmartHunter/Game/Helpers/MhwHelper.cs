@@ -246,6 +246,10 @@ namespace SmartHunter.Game.Helpers
                 }
                 if (statusEffectConfig.Source != (uint)StatusEffectConfig.MemorySource.Base && statusEffectConfig.Source != (uint)StatusEffectConfig.MemorySource.Equipment)
                 {
+                    if (!OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsValid)
+                    {
+                        continue;
+                    }
                     if (OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.CurrentEquippedWeaponType() != (WeaponType)statusEffectConfig.Source)
                     {
                         allConditionsPassed = false;
@@ -414,7 +418,7 @@ namespace SmartHunter.Game.Helpers
 
             if (ConfigHelper.MonsterData.Values.Monsters.ContainsKey(id) && ConfigHelper.MonsterData.Values.Monsters[id].Parts.Count() > 0)
             {
-                if (OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsCurrentPlayerLobbyHost() || !OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsPlayerOnline())
+                if (!OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsValid || OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsCurrentPlayerLobbyHost() || !OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsPlayerOnline())
                 {
                     UpdateMonsterParts(process, monster);
                     if (ConfigHelper.MonsterData.Values.Monsters[id].Parts.Where(p => p.IsRemovable).Count() > 0) // In case you are testing add "|| true"
@@ -423,14 +427,14 @@ namespace SmartHunter.Game.Helpers
                     }
                     //UpdateMonsterStatusEffects(process, monster);
 
-                    if (OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsPlayerOnline() && !OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsPlayerAlone())
+                    if (OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsValid && OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsPlayerOnline() && !OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsPlayerAlone())
                     {
                         // Upload DATA to central server
                     }
                 }
                 else
                 {
-                    if (OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsPlayerOnline())
+                    if (OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsValid && OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsPlayerOnline())
                     {
                         // Downlaod DATA from central server
                     }
