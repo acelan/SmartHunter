@@ -746,6 +746,7 @@ namespace SmartHunter.Config
             { "LOC_WEAPON_LONGSWORD_SPIRIT_GAUGE_REGEN_LAI_SLASH", "氣刃值回復(拔刀斬)" },
             { "LOC_WEAPON_CHARGE_BLADE_SHIELD_CHARGE", "紅盾" },
             { "LOC_WEAPON_CHARGE_BLADE_BLADE_CHARGE", "紅刃" },
+            { "LOC_WEAPON_CHARGE_BLADE_PHIAL_EXPIRES", "蓄瓶時間" },
             { "LOC_WEAPON_SWITCH_AXE_AMPED_STATE", "高出力" },
             { "LOC_WEAPON_HAMMER_POWER_CHARGE", "強蓄力" },
 
