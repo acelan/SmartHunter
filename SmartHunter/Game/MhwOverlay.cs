@@ -105,7 +105,7 @@ namespace SmartHunter.Game
                 {
                     var len = OverlayViewModel.Instance.MonsterWidget.Context.Monsters.Count;
                     var monsterId = OverlayViewModel.Instance.MonsterWidget.Context.Monsters.ElementAt(len-1).Id;
-#if DEBUG
+
                     while (len > 0)
                     {
                         len -= 1;
@@ -120,7 +120,6 @@ namespace SmartHunter.Game
                     }
 
                     Log.WriteLine("monster id = " + monsterId);
-#endif
                 }
                 String body = "```Damage Meter(" + monsterName + ")" + teamInfo + "```";
                 await this.postAsync(body);
