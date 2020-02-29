@@ -121,7 +121,9 @@ namespace SmartHunter.Game
 
                     Log.WriteLine("monster id = " + monsterId);
                 }
-                String body = "```Damage Meter(" + monsterName + ")" + teamInfo + "```";
+                String currentPlayer = OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.CurrentPlayerName;
+                String sessionID = OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.SessionID;
+                String body = "```Damage Meter(" + monsterName + ") " + currentPlayer + " AT " + sessionID + teamInfo + "```";
                 await this.postAsync(body);
             }
         }
