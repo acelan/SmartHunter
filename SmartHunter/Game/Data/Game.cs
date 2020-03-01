@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using SmartHunter.Core.Data;
 
 namespace SmartHunter.Game.Data
@@ -62,6 +64,19 @@ namespace SmartHunter.Game.Data
                 if (SetProperty(ref m_SessionID, value))
                 {
                     NotifyPropertyChanged(nameof(SessionID));
+                }
+            }
+        }
+
+        List<Player> m_SessionPlayers = new List<Player>();
+        public List<Player> SessionPlayers
+        {
+            get { return m_SessionPlayers; }
+            set
+            {
+                if (SetProperty(ref m_SessionPlayers, value))
+                {
+                    NotifyPropertyChanged(nameof(SessionPlayers));
                 }
             }
         }

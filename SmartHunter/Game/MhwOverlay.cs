@@ -13,6 +13,8 @@ using System.Text;
 
 using SmartHunter.Game.Data;
 using Newtonsoft.Json;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SmartHunter.Game
 {
@@ -95,11 +97,6 @@ namespace SmartHunter.Game
                     teamInfo += "\n" + player.Name + " " + damage + " (" + damageFraction + "%) DPS: " + currentDPS.ToString("F2") + "(" + dps.ToString("F2") + ")";
                 }
 
-                if (teamInfo == "")
-                {
-                    teamInfo = "\nThere is no player data yet.\n";
-                }
-
                 var monsterName = "";
                 if (OverlayViewModel.Instance.MonsterWidget.Context.Monsters.Any())
                 {
@@ -121,9 +118,21 @@ namespace SmartHunter.Game
 
                     Log.WriteLine("monster id = " + monsterId);
                 }
+
+                if (teamInfo == "")
+                {
+                    List<Player> players = OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.SessionPlayers;
+
+                    teamInfo = $"\n======================================({players.Count}/16)\n";
+
+                    string format = "{0,-16} MR: {1,-5} HR: {2,-5}";
+                    foreach (Player player in players)
+                        teamInfo = teamInfo + string.Format(format, player.Name, player.MR, player.HR) + "\n";
+                }
+
                 String currentPlayer = OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.CurrentPlayerName;
                 String sessionID = OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.SessionID;
-                String body = "```Damage Meter(" + monsterName + ") " + currentPlayer + " AT " + sessionID + teamInfo + "```";
+                String body = $"```Damage Meter({monsterName}) {currentPlayer} ({sessionID}){teamInfo}```";
                 await this.postAsync(body);
             }
         }

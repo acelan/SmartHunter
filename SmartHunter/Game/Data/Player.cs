@@ -21,6 +21,20 @@ namespace SmartHunter.Game.Data
             set { SetProperty(ref m_Name, value); }
         }
 
+        ushort m_HR;
+        public ushort HR
+        {
+            get { return m_HR; }
+            set { SetProperty(ref m_HR, value); }
+        }
+
+        ushort m_MR;
+        public ushort MR
+        {
+            get { return m_MR; }
+            set { SetProperty(ref m_MR, value); }
+        }
+
         int m_Damage;
         public int Damage
         {
@@ -60,6 +74,7 @@ namespace SmartHunter.Game.Data
         }
 
         double m_DamagePerSecond;
+
         public double DamagePerSecond
         {
             get { return m_DamagePerSecond; }

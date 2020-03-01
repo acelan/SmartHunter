@@ -1,7 +1,5 @@
-using System.Collections.ObjectModel;
-using System.Linq;
+using System.Collections.Generic;
 using SmartHunter.Core.Data;
-using SmartHunter.Game.Data;
 
 namespace SmartHunter.Game.Data.WidgetContexts
 {
@@ -9,12 +7,13 @@ namespace SmartHunter.Game.Data.WidgetContexts
     {
         public Game CurrentGame { get; set; }
         
-        public void UpdateCurrentGame(string playerName, string weaponString, string sessionID, string sessionHostName, string lobbyID, string lobbyHostName)
+        public void UpdateCurrentGame(string playerName, string weaponString, string sessionID, string sessionHostName, string lobbyID, string lobbyHostName, List<Player> sessionPlayers)
         {
             CurrentGame.CurrentPlayerName = playerName;
             CurrentGame.CurrentWeaponString = weaponString;
             CurrentGame.SessionID = sessionID;
             CurrentGame.SessionHostPlayerName = sessionHostName;
+            CurrentGame.SessionPlayers = sessionPlayers;
             CurrentGame.LobbyID = lobbyID;
             CurrentGame.LobbyHostPlayerName = lobbyHostName;
             CurrentGame.IsValid = true;

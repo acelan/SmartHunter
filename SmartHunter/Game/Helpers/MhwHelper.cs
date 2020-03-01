@@ -116,6 +116,9 @@ namespace SmartHunter.Game.Helpers
                 public static readonly ulong LobbyID = FirstPlayerName + 0x463;
                 public static readonly ulong LobbyHostPlayerName = LobbyID + 0x29;
                 public static readonly ulong NextLobbyHostName = 0x2F; // Is dis even right?
+
+                public static readonly ulong FirstSessionPlayerName = FirstPlayerName + 0x82AB6C;
+                public static readonly ulong NextSessionPlayerName = 0x1C0;
             }
 
             public static class PlayerDamageCollection
@@ -139,6 +142,17 @@ namespace SmartHunter.Game.Helpers
             if (currentSessionID.Length > 0)
             {
                 currentSessionPlayerName = MemoryHelper.ReadString(process, playerNameCollectionAddress + DataOffsets.PlayerNameCollection.SessionHostPlayerName, (uint)DataOffsets.PlayerNameCollection.PlayerNameLength);
+            }
+
+            List<Player> sessionPlayers = new List<Player>();
+            for (uint i = 0; i < 16; i++)
+            {
+                string PlayerName = MemoryHelper.ReadString(process, playerNameCollectionAddress + DataOffsets.PlayerNameCollection.FirstSessionPlayerName + i * DataOffsets.PlayerNameCollection.NextSessionPlayerName, (uint)DataOffsets.PlayerNameCollection.PlayerNameLength);
+                ushort HR = MemoryHelper.Read<ushort>(process, playerNameCollectionAddress + DataOffsets.PlayerNameCollection.FirstSessionPlayerName + i * DataOffsets.PlayerNameCollection.NextSessionPlayerName + 0x27);
+                ushort MR = MemoryHelper.Read<ushort>(process, playerNameCollectionAddress + DataOffsets.PlayerNameCollection.FirstSessionPlayerName + i * DataOffsets.PlayerNameCollection.NextSessionPlayerName + 0x29);
+
+                if (PlayerName.Length > 0)
+                    sessionPlayers.Add(new Player() { Name = PlayerName, HR = HR, MR = MR });
             }
 
             string currentPlayerName = MemoryHelper.ReadString(process, currentPlayerNameAddress, (uint)DataOffsets.PlayerNameCollection.PlayerNameLength);
@@ -173,7 +187,7 @@ namespace SmartHunter.Game.Helpers
             }
 
             string currentEquippedWeaponString = MemoryHelper.ReadString(process, currentWeaponAddress, 0x4F);
-            OverlayViewModel.Instance.DebugWidget.Context.UpdateCurrentGame(currentPlayerName, currentEquippedWeaponString, currentSessionID, currentSessionPlayerName, currentLobbyID, currentLobbyPlayerName);
+            OverlayViewModel.Instance.DebugWidget.Context.UpdateCurrentGame(currentPlayerName, currentEquippedWeaponString, currentSessionID, currentSessionPlayerName, currentLobbyID, currentLobbyPlayerName, sessionPlayers);
         }
 
         public static void UpdatePlayerWidget(Process process, ulong baseAddress, ulong equipmentAddress, ulong weaponAddress)
