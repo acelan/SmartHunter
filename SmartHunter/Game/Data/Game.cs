@@ -29,6 +29,14 @@ namespace SmartHunter.Game.Data
     {
         public bool IsValid = false;
 
+        public string key = "";
+
+        public bool helloDone = false;
+
+        public bool checkDone = false;
+
+        public string OutdatedLobbyID = "";
+
         string m_SessionHostPlayerName = "";
         public string SessionHostPlayerName
         {
@@ -158,7 +166,7 @@ namespace SmartHunter.Game.Data
 
         public bool IsPlayerAlone()
         {
-            return LobbyPlayerCount == 1 || !IsPlayerOnline();
+            return LobbyPlayerCount <= 1 || !IsPlayerOnline();
         }
 
         public WeaponType CurrentEquippedWeaponType()
