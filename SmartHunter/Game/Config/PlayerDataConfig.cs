@@ -1,3 +1,4 @@
+using System.Linq;
 using SmartHunter.Game.Data;
 
 namespace SmartHunter.Game.Config
@@ -93,11 +94,16 @@ namespace SmartHunter.Game.Config
 
             new StatusEffectConfig("Horn", "LOC_STATUS_EFFECT_KNOCKBACKS_NEGATED", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(57)),
 
-            new StatusEffectConfig("Horn", "LOC_STATUS_EFFECT_ELEMENTAL_RESISTANCE_UP", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(59)),
+            new StatusEffectConfig("Horn", "LOC_STATUS_EFFECT_BLIGHT_RESISTANCE_UP", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(59)),
             new StatusEffectConfig("Horn", "LOC_STATUS_EFFECT_AFFINITY_UP", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(60)),
             new StatusEffectConfig("Horn", "LOC_STATUS_EFFECT_ALL_AILMENTS_NEGATED", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(61)),
             new StatusEffectConfig("Horn", "LOC_STATUS_EFFECT_WIND_PRESSURE_NEGATED_AND_EARPLUGS_S", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(62)),
             new StatusEffectConfig("Horn", "LOC_STATUS_EFFECT_ABNORMAL_STATUS_ATTACK_INCREASED", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(63)),
+	    
+            new StatusEffectConfig("Horn", "LOC_STATUS_EFFECT_MAX_STAM_UP_REC", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(67)),
+            new StatusEffectConfig("Horn", "LOC_STATUS_EFFECT_EXT_HEALTH_REC", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(68)),
+            new StatusEffectConfig("Horn", "LOC_STATUS_EFFECT_SPEED_BOOST_EVADE_UP", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(69)),
+            new StatusEffectConfig("Horn", "LOC_STATUS_EFFECT_ELE_EFF_UP", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(70)),
 
             new StatusEffectConfig("Coral", "LOC_STATUS_EFFECT_RESUSCITATE", (uint)StatusEffectConfig.MemorySource.Base,indexToHexStrNoOffset(71)),
             new StatusEffectConfig("Coral", "LOC_STATUS_EFFECT_ATTACK_UP_S", (uint)StatusEffectConfig.MemorySource.Base, indexToHexStrNoOffset(72)),
