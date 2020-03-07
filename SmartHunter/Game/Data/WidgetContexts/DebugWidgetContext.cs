@@ -13,8 +13,9 @@ namespace SmartHunter.Game.Data.WidgetContexts
         public Game CurrentGame { get; set; }
 
         private bool networkOperationDone = true;
-        private static int lastNetworkOperationTime = 0;
-        public void UpdateCurrentGame(string playerName, string weaponString, string sessionID, string sessionHostName, string lobbyID, string lobbyHostName, List<Player> sessionPlayers)
+        private int lastNetworkOperationTime = 0;
+        private string OutdatedLobbyID = "";
+        public void UpdateCurrentGame(string playerName, string weaponString, string sessionID, string sessionHostName, string lobbyID, string lobbyHostName, bool isExpedition, List<Player> sessionPlayers)
         {
             bool wasHost = CurrentGame.IsCurrentPlayerLobbyHost();
             CurrentGame.CurrentPlayerName = playerName;
@@ -24,18 +25,23 @@ namespace SmartHunter.Game.Data.WidgetContexts
             CurrentGame.SessionPlayers = sessionPlayers;
             CurrentGame.LobbyID = lobbyID;
             CurrentGame.LobbyHostPlayerName = lobbyHostName;
+            CurrentGame.IsPlayerInExpedition = isExpedition;
             CurrentGame.IsValid = true;
             if (ConfigHelper.Main.Values.Overlay.MonsterWidget.UseNetworkServer && ServerManager.Instance.IsServerOline == 1)
             {
                 if (CurrentGame.IsPlayerOnline() && CurrentGame.IsPlayerInLobby())
                 {
-                    if (!CurrentGame.LobbyID.Equals(CurrentGame.OutdatedLobbyID))
+                    if (CurrentGame.IsCurrentPlayerLobbyHost() && !wasHost)
+                    {
+                        ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.ELEVATE, CurrentGame.key, null, true, 0, null);
+                    }
+                    if (!CurrentGame.LobbyID.Equals(OutdatedLobbyID))
                     {
                         SHA1 sha = new SHA1CryptoServiceProvider();
                         CurrentGame.key = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(CurrentGame.SessionID + CurrentGame.LobbyID)));
                         if (CurrentGame.helloDone)
                         {
-                            ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.DONE, Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(CurrentGame.SessionID + CurrentGame.OutdatedLobbyID))), wasHost, null, (result, ping) =>
+                            ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.DONE, Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(CurrentGame.SessionID + OutdatedLobbyID))), null, wasHost, 0, null, (result, ping) =>
                             {
                                 if (result != null && !result["status"].ToString().Equals("error"))
                                 {
@@ -44,12 +50,12 @@ namespace SmartHunter.Game.Data.WidgetContexts
                             });
                         }
                         CurrentGame.helloDone = false;
-                        CurrentGame.OutdatedLobbyID = CurrentGame.LobbyID;
+                        OutdatedLobbyID = CurrentGame.LobbyID;
                     }
                     if (!CurrentGame.helloDone && networkOperationDone && DateTime.Now.Second - (lastNetworkOperationTime > DateTime.Now.Second ? lastNetworkOperationTime - 60 : lastNetworkOperationTime) >= 5)
                     {
                         networkOperationDone = false;
-                        ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.HELLO, CurrentGame.key, CurrentGame.IsCurrentPlayerLobbyHost(), null, (result, ping) =>
+                        ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.HELLO, CurrentGame.key, null, CurrentGame.IsCurrentPlayerLobbyHost(), 0, null, (result, ping) =>
                         {
                             if (result != null && result["status"].ToString().Equals("ok"))
                             {
@@ -60,7 +66,7 @@ namespace SmartHunter.Game.Data.WidgetContexts
                                 }
                                 else
                                 {
-                                    ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.DONE, result["result"].ToString(), wasHost, null, (result, ping) =>
+                                    ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.DONE, result["result"].ToString(), null, wasHost, 0, null, (result, ping) =>
                                     {
                                         if (result != null && !result["status"].ToString().Equals("error"))
                                         {
@@ -84,7 +90,7 @@ namespace SmartHunter.Game.Data.WidgetContexts
                     else if (CurrentGame.helloDone && networkOperationDone && !(CurrentGame.IsCurrentPlayerLobbyHost() && CurrentGame.IsPlayerAlone()) && !CurrentGame.checkDone && DateTime.Now.Second - (lastNetworkOperationTime > DateTime.Now.Second ? lastNetworkOperationTime - 60 : lastNetworkOperationTime) >= 5)
                     {
                         networkOperationDone = false;
-                        ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.CHECK, CurrentGame.key, CurrentGame.IsCurrentPlayerLobbyHost(), null, (result, ping) =>
+                        ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.CHECK, CurrentGame.key, null, CurrentGame.IsCurrentPlayerLobbyHost(), 0, null, (result, ping) =>
                         {
                             if (result != null && result["status"].ToString().Equals("ok"))
                             {
@@ -113,7 +119,7 @@ namespace SmartHunter.Game.Data.WidgetContexts
                 {
                     if (CurrentGame.helloDone)
                     {
-                        ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.DONE, CurrentGame.key, wasHost, null, (result, ping) =>
+                        ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.DONE, CurrentGame.key, null, wasHost, 0, null, (result, ping) =>
                         {
                             if (result != null && !result["status"].ToString().Equals("error"))
                             {

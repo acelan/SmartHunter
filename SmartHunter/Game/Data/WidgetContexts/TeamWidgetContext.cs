@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using SmartHunter.Core;
 using SmartHunter.Core.Data;
+using SmartHunter.Game.Data.ViewModels;
 using SmartHunter.Game.Helpers;
 
 namespace SmartHunter.Game.Data.WidgetContexts
@@ -133,7 +134,11 @@ namespace SmartHunter.Game.Data.WidgetContexts
                 player.DamagePerSecond = damage / (now - player.CombatStart).TotalSeconds;
             else
                 player.DamagePerSecond = 999.99;
-            player.Damage = damage;
+
+            if (!OverlayViewModel.Instance.DebugWidget.Context.CurrentGame.IsPlayerInExpedition)
+            {
+                player.Damage = damage;
+            }
 
             return player;
         }
