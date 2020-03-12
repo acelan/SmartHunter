@@ -2,6 +2,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Collections.Generic;
+using SmartHunter.Core;
 using SmartHunter.Core.Data;
 using SmartHunter.Core.Helpers;
 using SmartHunter.Game.Helpers;
@@ -43,9 +44,24 @@ namespace SmartHunter.Game.Data.WidgetContexts
                         {
                             ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.DONE, Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(CurrentGame.SessionID + OutdatedLobbyID))), null, wasHost, 0, null, (result, ping) =>
                             {
-                                if (result != null && !result["status"].ToString().Equals("error"))
+                                if (result != null)
                                 {
-                                    Core.Log.WriteLine($"Left lobby with id '{result["result"]}'");
+                                    if (!result["status"].ToString().Equals("error"))
+                                    {
+                                        Core.Log.WriteLine($"Left lobby with id '{result["result"]}'");
+                                    }
+                                    else if (result["status"].ToString().Equals("error"))
+                                    {
+                                        if (result["result"].ToString().Equals("v"))
+                                        {
+                                            ServerManager.Instance.IsServerOline = -1;
+                                            Log.WriteLine("A new version is available, please update if you want to use the server!");
+                                        }else if (result["result"].ToString().Equals("dev"))
+                                        {
+                                            ServerManager.Instance.IsServerOline = -1;
+                                            Log.WriteLine("The server is under maintenance!");
+                                        }
+                                    }
                                 }
                             });
                         }
@@ -61,7 +77,7 @@ namespace SmartHunter.Game.Data.WidgetContexts
                             {
                                 if (CurrentGame.key.Equals(result["result"].ToString()))
                                 {
-                                    Core.Log.WriteLine($"Joined lobby with id '{result["result"]}'");
+                                    Log.WriteLine($"Joined lobby with id '{result["result"]}'");
                                     CurrentGame.helloDone = true;
                                 }
                                 else
@@ -70,13 +86,26 @@ namespace SmartHunter.Game.Data.WidgetContexts
                                     {
                                         if (result != null && !result["status"].ToString().Equals("error"))
                                         {
-                                            Core.Log.WriteLine($"Left lobby with id '{result["result"]}'");
+                                            Log.WriteLine($"Left lobby with id '{result["result"]}'");
                                         }
                                     });
                                 }
                             }
                             else
                             {
+                                if (result != null && result["status"].ToString().Equals("error"))
+                                {
+                                    if (result["result"].ToString().Equals("v"))
+                                    {
+                                        ServerManager.Instance.IsServerOline = -1;
+                                        Log.WriteLine("A new version is available, please update if you want to use the server!");
+                                    }
+                                    else if (result["result"].ToString().Equals("dev"))
+                                    {
+                                        ServerManager.Instance.IsServerOline = -1;
+                                        Log.WriteLine("The server is under maintenance!");
+                                    }
+                                }
                                 CurrentGame.helloDone = false;
                             }
                             networkOperationDone = true;
@@ -87,19 +116,40 @@ namespace SmartHunter.Game.Data.WidgetContexts
                             lastNetworkOperationTime = DateTime.Now.Second;
                         });
                     }
-                    else if (CurrentGame.helloDone && networkOperationDone && !(CurrentGame.IsCurrentPlayerLobbyHost() && CurrentGame.IsPlayerAlone()) && !CurrentGame.checkDone && DateTime.Now.Second - (lastNetworkOperationTime > DateTime.Now.Second ? lastNetworkOperationTime - 60 : lastNetworkOperationTime) >= 5)
+                    else if (CurrentGame.helloDone && (!CurrentGame.checkDone || (CurrentGame.IsPlayerInExpedition && !CurrentGame.playersCheckDone)) && networkOperationDone && !(CurrentGame.IsCurrentPlayerLobbyHost() && CurrentGame.IsPlayerAlone()) && DateTime.Now.Second - (lastNetworkOperationTime > DateTime.Now.Second ? lastNetworkOperationTime - 60 : lastNetworkOperationTime) >= 5)
                     {
                         networkOperationDone = false;
                         ServerManager.Instance.RequestCommadWithHandler(ServerManager.Command.CHECK, CurrentGame.key, null, CurrentGame.IsCurrentPlayerLobbyHost(), 0, null, (result, ping) =>
                         {
                             if (result != null && result["status"].ToString().Equals("ok"))
                             {
-                                CurrentGame.checkDone = result["result"].ToString().Equals("true");
+                                if (CurrentGame.IsCurrentPlayerLobbyHost())
+                                {
+                                    CurrentGame.checkDone = result["result"]["players"].ToString().Equals("true");
+                                }
+                                else
+                                {
+                                    CurrentGame.checkDone = result["result"]["host"].ToString().Equals("true");
+                                }
+                                CurrentGame.playersCheckDone = result["result"]["players"].ToString().Equals("true");
                             }
-                            else if (result != null && result["result"].ToString().Equals("0"))
+                            else if (result != null && result["status"].ToString().Equals("error"))
                             {
-                                CurrentGame.helloDone = false;
-                                CurrentGame.checkDone = false;
+                                if (result["result"].ToString().Equals("0"))
+                                {
+                                    CurrentGame.helloDone = false;
+                                    CurrentGame.checkDone = false;
+                                }
+                                else if (result["result"].ToString().Equals("v"))
+                                {
+                                    ServerManager.Instance.IsServerOline = -1;
+                                    Log.WriteLine("A new version is available, please update if you want to use the server!");
+                                }
+                                else if (result["result"].ToString().Equals("dev"))
+                                {
+                                    ServerManager.Instance.IsServerOline = -1;
+                                    Log.WriteLine("The server is under maintenance!");
+                                }
                             }
                             else
                             {
@@ -123,7 +173,19 @@ namespace SmartHunter.Game.Data.WidgetContexts
                         {
                             if (result != null && !result["status"].ToString().Equals("error"))
                             {
-                                Core.Log.WriteLine($"Left lobby with id '{result["result"]}'");
+                                Log.WriteLine($"Left lobby with id '{result["result"]}'");
+                            }else if (result != null && result["status"].ToString().Equals("error"))
+                            {
+                                if (result["result"].ToString().Equals("v"))
+                                {
+                                    ServerManager.Instance.IsServerOline = -1;
+                                    Log.WriteLine("A new version is available, please update if you want to use the server!");
+                                }
+                                else if (result["result"].ToString().Equals("dev"))
+                                {
+                                    ServerManager.Instance.IsServerOline = -1;
+                                    Log.WriteLine("The server is under maintenance!");
+                                }
                             }
                             ServerManager.Instance.PrintStats();
                             ServerManager.Instance.ResetStats();
