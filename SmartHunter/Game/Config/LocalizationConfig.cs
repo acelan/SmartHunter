@@ -859,6 +859,12 @@ namespace SmartHunter.Config
             { "LOC_STATUS_EFFECT_RAGE", "憤怒" },
             { "LOC_STATUS_EFFECT_STAMINA", "耐力" },
             { "LOC_STATUS_EFFECT_FATIGUE", "疲勞" },
+
+            { "LOC_WEAKNESS_DRAGON", "龍" },
+            { "LOC_WEAKNESS_FIRE", "火" },
+            { "LOC_WEAKNESS_ICE", "冰" },
+            { "LOC_WEAKNESS_THUNDER", "雷" },
+            { "LOC_WEAKNESS_WATER", "水" },
         };
 
         public LocalizationConfig_zhTW()
