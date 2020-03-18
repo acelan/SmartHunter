@@ -66,6 +66,7 @@ public class Env
 ## Credits
 
 - [r00telement](https://www.nexusmods.com/monsterhunterworld/users/64406676) for he's original [project](https://github.com/r00telement/SmartHunter).
+- [Phil-Pa](https://github.com/Phil-Pa) for he's [idea](https://github.com/gabrielefilipp/SmartHunter/pull/57/commits/4e2394e98ca63626b2ddcb4503a0ba0b0ed70c72)
 
 ## Disclaimer
 
