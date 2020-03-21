@@ -1,16 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
+# Blend for Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHunter", "SmartHunter\SmartHunter.csproj", "{F5F99CEF-1C16-48E6-A88B-1A66D3B53998}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHunter", "SmartHunter\SmartHunter.csproj", "{F5F99CEF-1C16-48E6-A88B-1A66D3B53998}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		AceLan|Any CPU = AceLan|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5F99CEF-1C16-48E6-A88B-1A66D3B53998}.AceLan|Any CPU.ActiveCfg = AceLan|Any CPU
+		{F5F99CEF-1C16-48E6-A88B-1A66D3B53998}.AceLan|Any CPU.Build.0 = AceLan|Any CPU
 		{F5F99CEF-1C16-48E6-A88B-1A66D3B53998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5F99CEF-1C16-48E6-A88B-1A66D3B53998}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5F99CEF-1C16-48E6-A88B-1A66D3B53998}.Release|Any CPU.ActiveCfg = Release|Any CPU

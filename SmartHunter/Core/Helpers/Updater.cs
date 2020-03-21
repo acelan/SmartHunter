@@ -25,7 +25,11 @@ namespace SmartHunter.Core.Helpers
                     var branch = "master";
                     //var files = new string[5] { "SmartHunter/Game/Config/MemoryConfig.cs", "SmartHunter/Game/Config/PlayerDataConfig.cs", "SmartHunter/Game/Config/MonsterDataConfig.cs", "SmartHunter/Game/Config/LocalizationConfig.cs", "SmartHunter/bin/Debug/SmartHunter.exe" };
 
-                    UpdateNode[] nodes = new UpdateNode[6] { new UpdateNode("", "SmartHunter/Game/Config/MemoryConfig.cs", "Memory.json", "", false), new UpdateNode("", "SmartHunter/Game/Config/PlayerDataConfig.cs", "PlayerData.json", "", false), new UpdateNode("", "SmartHunter/Game/Config/MonsterDataConfig.cs", "MonsterData.json", "", false), new UpdateNode("", "SmartHunter/Game/Config/LocalizationConfig.cs", "en-US.json", "", false), new UpdateNode("", "SmartHunter/bin/Debug/Default.xaml", "Default.xaml", "", true), new UpdateNode("", "SmartHunter/bin/Debug/SmartHunter.exe", "SmartHunter.exe", "", true)  };
+#if ACELAN
+                    UpdateNode[] nodes = new UpdateNode[6] { new UpdateNode("", "SmartHunter/Game/Config/MemoryConfig.cs", "Memory.json", "", false), new UpdateNode("", "SmartHunter/Game/Config/PlayerDataConfig.cs", "PlayerData.json", "", false), new UpdateNode("", "SmartHunter/Game/Config/MonsterDataConfig.cs", "MonsterData.json", "", false), new UpdateNode("", "SmartHunter/Game/Config/LocalizationConfig.cs", "zh-TW.json", "", false), new UpdateNode("", "SmartHunter/bin/AceLan/Default.xaml", "Default.xaml", "", true), new UpdateNode("", "SmartHunter/bin/AceLan/SmartHunter.exe", "SmartHunter.exe", "", true)  };
+#else
+                    UpdateNode[] nodes = new UpdateNode[6] { new UpdateNode("", "SmartHunter/Game/Config/MemoryConfig.cs", "Memory.json", "", false), new UpdateNode("", "SmartHunter/Game/Config/PlayerDataConfig.cs", "PlayerData.json", "", false), new UpdateNode("", "SmartHunter/Game/Config/MonsterDataConfig.cs", "MonsterData.json", "", false), new UpdateNode("", "SmartHunter/Game/Config/LocalizationConfig.cs", "zh-TW.json", "", false), new UpdateNode("", "SmartHunter/bin/Release/Default.xaml", "Default.xaml", "", true), new UpdateNode("", "SmartHunter/bin/Release/SmartHunter.exe", "SmartHunter.exe", "", true)  };
+#endif
 
                     foreach (UpdateNode node in nodes)
                     {

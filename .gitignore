@@ -1,5 +1,6 @@
 SmartHunter/bin/Debug/*
 SmartHunter/bin/Release/*
+SmartHunter/bin/AceLan/*
 SmartHunter/SmartHunter.csproj.user
 obj/
 .vs/
@@ -8,5 +9,12 @@ obj/
 !SmartHunter/bin/Debug/Default.xaml
 !SmartHunter/bin/Debug/Newtonsoft.Json.dll
 !SmartHunter/bin/Debug/SmartHunter.exe
+
+!SmartHunter/bin/AceLan/Default.xaml
+!SmartHunter/bin/AceLan/Newtonsoft.Json.dll
+!SmartHunter/bin/AceLan/SmartHunter.exe
+!SmartHunter/bin/Release/Default.xaml
+!SmartHunter/bin/Release/Newtonsoft.Json.dll
+!SmartHunter/bin/Release/SmartHunter.exe
 
 SmartHunter/Env.cs
