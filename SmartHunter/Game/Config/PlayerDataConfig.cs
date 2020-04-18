@@ -203,9 +203,9 @@ namespace SmartHunter.Game.Config
             new StatusEffectConfig("Weapon", "LOC_WEAPON_LONGSWORD_SPIRIT_GAUGE_REGEN_LAI_SLASH", (uint)WeaponType.LONG_SWORD, indexToHexStrNoOffset(2406)),
             new StatusEffectConfig("Weapon", "LOC_WEAPON_LONGSWORD_STEADY_SPIRIT_LEVEL", (uint)WeaponType.LONG_SWORD, indexToHexStrNoOffset(2408)),
 
-            new StatusEffectConfig("Weapon", "LOC_WEAPON_CHARGE_BLADE_SHIELD_CHARGE", (uint)WeaponType.CHARGE_BLADE, indexToHexStrNoOffset(2402)),
-            new StatusEffectConfig("Weapon", "LOC_WEAPON_CHARGE_BLADE_BLADE_CHARGE", (uint)WeaponType.CHARGE_BLADE, indexToHexStrNoOffset(2403)),
-            new StatusEffectConfig("Weapon", "LOC_WEAPON_CHARGE_BLADE_PHIAL_EXPIRES", (uint)WeaponType.CHARGE_BLADE, indexToHexStrNoOffset(2464)),
+            new StatusEffectConfig("Weapon", "LOC_WEAPON_CHARGE_BLADE_SHIELD_CHARGE", (uint)WeaponType.CHARGE_BLADE, indexToHexStrNoOffset(2270)),
+            new StatusEffectConfig("Weapon", "LOC_WEAPON_CHARGE_BLADE_BLADE_CHARGE", (uint)WeaponType.CHARGE_BLADE, indexToHexStrNoOffset(2271)),
+            new StatusEffectConfig("Weapon", "LOC_WEAPON_CHARGE_BLADE_PHIAL_EXPIRES", (uint)WeaponType.CHARGE_BLADE, indexToHexStrNoOffset(2332)),
 
             // Not Working
             /*
