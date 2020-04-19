@@ -23,7 +23,12 @@ namespace SmartHunter.Game.Config
         {
             { InputControl.ManipulateWidget, Key.LeftAlt },
             { InputControl.HideWidgets, Key.F1 },
-            { InputControl.SendDataToDiscord, Key.F5 }
+            { InputControl.SendDataToDiscord, Key.F5 },
+            { InputControl.CopyTeamDamage, Key.F6 },
+            { InputControl.CopyPlayer1Damage, Key.F7},
+            { InputControl.CopyPlayer2Damage, Key.F8},
+            { InputControl.CopyPlayer3Damage, Key.F9},
+            { InputControl.CopyPlayer4Damage, Key.F10}
         };
 
         public DebugConfig Debug = new DebugConfig();

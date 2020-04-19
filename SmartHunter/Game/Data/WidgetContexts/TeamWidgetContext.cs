@@ -74,7 +74,7 @@ namespace SmartHunter.Game.Data.WidgetContexts
                 }
                 return null;
             }
-            
+
             while (index >= Players.Count)
             {
                 Players.Add(new Player() { Index = Players.Count, Name = LocalizationHelper.GetString(LocalizationHelper.UnknownPlayerStringId) });
@@ -165,7 +165,7 @@ namespace SmartHunter.Game.Data.WidgetContexts
                 var highestDamagePlayer = highestDamagePlayers.First();
                 highestDamagePlayer.DamageFraction = (float)highestDamagePlayer.Damage / (float)totalDamage;
                 highestDamagePlayer.BarFraction = 1;
-
+                //Log.WriteLine(String.Format("{0} {1} {2}", highestDamagePlayer.Damage.ToString(), highestDamagePlayer.DamageFraction.ToString(), highestDamagePlayer.BarFraction.ToString()));
                 foreach (var otherPlayer in Players.Except(highestDamagePlayers))
                 {
                     otherPlayer.DamageFraction = (float)otherPlayer.Damage / (float)totalDamage;
