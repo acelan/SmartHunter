@@ -473,6 +473,7 @@ namespace SmartHunter.Config
             { "LOC_MONSTER_ANJANATH_FULGUR", "雷顎龍" },
             { "LOC_MONSTER_PUKEI_PUKEI_CORAL", "水妖鳥" },
             { "LOC_MONSTER_BRACHYDIOS", "碎龍" },
+            { "LOC_MONSTER_RAGING_BRACHYDIOS", "猛爆碎龍" },
             { "LOC_MONSTER_VELKHANA", "冰呪龍" },
             { "LOC_MONSTER_BEOTODUS", "冰魚龍" },
             { "LOC_MONSTER_GLAVENUS", "斬龍" },
@@ -489,6 +490,7 @@ namespace SmartHunter.Config
             { "LOC_MONSTER_GOLD_RATHIAN", "金火龍" },
             { "LOC_MONSTER_SILVER_RATHALOS", "銀火龍" },
             { "LOC_MONSTER_RAJANG", "金獅子" },
+            { "LOC_MONSTER_FURIOUS_RAJANG", "憤怒的金獅子" },
             { "LOC_MONSTER_STYGIAN_ZINOGRE", "獄狼龍" },
             { "LOC_MONSTER_SAFI_JIIVA", "冥赤龍" },
 
@@ -569,6 +571,7 @@ namespace SmartHunter.Config
             { "LOC_PART_LIMBS_RIGHT", "右爪" },
             { "LOC_PART_TAIL", "尾巴" },
             { "LOC_PART_TAIL_BLADE", "刃尾" },
+            { "LOC_PART_TAIL_CLAW", "尾爪" },
             { "LOC_PART_WINGS", "翅膀" },
             { "LOC_PART_WING_LEFT", "左翅膀" },
             { "LOC_PART_WING_RIGHT", "右翅膀" },
@@ -685,6 +688,7 @@ namespace SmartHunter.Config
             { "LOC_STATUS_0", "Status 0" },
             { "LOC_STATUS_EFFECT_UNKNOWN", "未知效果狀態" },
             { "LOC_STATUS_EFFECT_POISON", "中毒" },
+            { "LOC_STATUS_EFFECT_VIRULENT", "Virulent"},
             { "LOC_STATUS_EFFECT_PARALYSIS", "麻痺" },
             { "LOC_STATUS_EFFECT_SLEEP", "睡眠" },
             { "LOC_STATUS_EFFECT_BLAST", "爆破" },
@@ -768,6 +772,7 @@ namespace SmartHunter.Config
             { "LOC_STATUS_EFFECT_ELEMENTAL_RESISTANCE_DOWN", "屬性耐性下降" },
             { "LOC_STATUS_EFFECT_NO_ITEMS", "禁止使用物品" },
             { "LOC_STATUS_EFFECT_BLASTBLIGHT", "爆破屬性異常" },
+            { "LOC_STATUS_EFFECT_BLASTSCOURGE", "Blastscourge" },
 
             // Buffs
             { "LOC_STATUS_EFFECT_DASH_JUICE", "強走藥" },
@@ -785,6 +790,11 @@ namespace SmartHunter.Config
             { "LOC_STATUS_EFFECT_MEGA_ARMORSKIN", "硬化藥·大" },
             { "LOC_STATUS_EFFECT_COOL_DRINK", "冷飲" },
             { "LOC_STATUS_EFFECT_HOT_DRINK", "熱飲" },
+            { "LOC_STATUS_EFFECT_HEALTH_RECOVERY(HOT_SPRING)","體力回復(溫泉)"},
+            { "LOC_STATUS_EFFECT_CLODPROOF(HOT_SPRING)","耐寒(溫泉)"},
+            { "LOC_STATUS_EFFECT_ATTACK_UP(POWERCONE)","Attack UP (Powercone)"},
+            { "LOC_STATUS_EFFECT_ICEPROOF(THAWPUFF)","Iceproof (Thawpuff)"},
+
             { "LOC_STATUS_EFFECT_PROTECTIVE_POLISH", "鋼刃研磨" },
             { "LOC_STATUS_EFFECT_AFFINITY_SLIDING", "滑走強化" },
 
