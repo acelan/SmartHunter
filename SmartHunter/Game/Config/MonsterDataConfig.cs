@@ -250,7 +250,8 @@ namespace SmartHunter.Game.Config
                         new MonsterPartConfig("Part", "LOC_PART_TAIL")
                     },
                     829.11f,
-                    new MonsterCrownConfig(CrownPreset.Rajang)
+                    new MonsterCrownConfig(CrownPreset.Rajang),
+                    "Dragon"
                 )
             },
             { // true
@@ -561,7 +562,8 @@ namespace SmartHunter.Game.Config
                         new MonsterPartConfig("Part", "LOC_PART_TAIL_CLAW")
                     },
                     2282.77f,
-                    new MonsterCrownConfig(CrownPreset.Standard)
+                    new MonsterCrownConfig(CrownPreset.Standard),
+                    "Dragon"
                 )
             },
             { // true

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,15 +14,11 @@ using SmartHunter.Game.Data;
 using SmartHunter.Game.Data.ViewModels;
 using SmartHunter.Game.Data.WidgetContexts;
 using SmartHunter.Game.Helpers;
-using System;
 using System.IO;
 using System.Net.Http;
 using System.Text;
 
-using SmartHunter.Game.Data;
 using Newtonsoft.Json;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace SmartHunter.Game
 {
